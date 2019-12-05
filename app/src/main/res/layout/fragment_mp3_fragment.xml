@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ic_app_background"
+    tools:context=".ui.music.FragmentMP3">
+
+
+    <ImageView
+        android:id="@+id/ivCaratula"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivCaratula"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <ImageButton
+        android:id="@+id/ibPlay"
+        style="@android:style/Widget.Material.Light.ImageButton"
+        android:layout_width="64dp"
+        android:layout_height="49dp"
+        android:layout_below="@id/tvTitulo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@color/ic_app_background"
+        android:src="@android:drawable/ic_media_play"
+        android:tint="@color/colorPrimary" />
+
+    <ImageButton
+        android:id="@+id/ibCancionAnterior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTitulo"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@id/ibPlay"
+        android:background="@color/ic_app_background"
+        android:src="@android:drawable/ic_media_previous"
+        android:tint="@color/colorPrimary" />
+
+    <ImageButton
+        android:id="@+id/ibCancionSiguiente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTitulo"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/ibPlay"
+        android:background="@color/ic_app_background"
+        android:src="@android:drawable/ic_media_next"
+        android:tint="@color/colorPrimary" />
+</RelativeLayout>

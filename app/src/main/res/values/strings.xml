@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MisApps</string>
+    <string name="inicio">Inicio</string>
+    <string name="noticias">Noticias</string>
+    <string name="contacto">Contacto</string>
+    <string name="acercaDe">Acerca de</string>
+    <string name="menuSocial">Social</string>
+    <string name="title_activity_detalle">Más detalles</string>
+    <string name="username"> Usuario:</string>
+    <string name="email">email</string>
+    <string name="contactame">Contacto</string>
+    <string name="miNombre" translatable="false">Carlos González Díez</string>
+    <string name="contenidoInicio">Bienvenido a misApps</string>
+    <string name="juegos">Mis Juegos</string>
+</resources>

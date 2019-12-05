@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MisApps</string>
+    <string name="acercaDe" translatable="false">About</string>
+    <string name="noticias" translatable="false">News</string>
+    <string name="contacto">Contact</string>
+    <string name="menuSocial">Media</string>
+    <string name="title_activity_detalle">More details</string>
+    <string name="username">User</string>
+    <string name="email">email</string>
+    <string name="contactame">Contact</string>
+    <string name="inicio">Home</string>
+    <string name="contenidoInicio">Welcome to myApps</string>
+    <string name="juegos">Games</string>
+</resources>

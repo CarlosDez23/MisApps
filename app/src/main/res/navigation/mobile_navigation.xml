@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/inicioFragment">
+
+    <fragment
+        android:id="@+id/inicioFragment"
+        android:name="com.example.misapps.ui.inicio.InicioFragment"
+        android:label="@string/inicio"
+        tools:layout="@layout/inicio_fragment" />
+
+    <fragment
+    android:id="@+id/nav_home"
+    android:name="com.example.misapps.ui.noticias.NoticiasFragment"
+    android:label="@string/noticias"
+    tools:layout="@layout/fragment_noticias" />
+
+    <fragment
+        android:id="@+id/nav_juegos"
+        android:name="com.example.misapps.ui.juegos.JuegosFragment"
+        android:label="@string/juegos"
+        tools:layout="@layout/juegos_fragment" />
+
+    <fragment
+        android:id="@+id/nav_carousel"
+        android:name="com.example.misapps.ui.carrusel.CarouselFragment"
+        android:label="Carousel"
+        tools:layout="@layout/carousel_fragment" />
+
+
+    <fragment
+        android:id="@+id/nav_music"
+        android:name="com.example.misapps.ui.music.MusicFragment"
+        android:label="Reproductor de música"
+        tools:layout="@layout/music_fragment" />
+
+
+    <fragment
+        android:id="@+id/nav_videos"
+        android:name="com.example.misapps.ui.video.VideoFragment"
+        android:label="Mis Vídeos"
+        tools:layout="@layout/video_fragment" />
+
+    <fragment
+        android:id="@+id/nav_sensores"
+        android:name="com.example.misapps.ui.Sensores.SensoresFragment"
+        android:label="Sensores"
+        tools:layout="@layout/sensores_fragment"/>
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.example.misapps.ui.contacto.FragmentContacto"
+        android:label="@string/contacto"
+        tools:layout="@layout/fragment_contacto" />
+
+    <fragment
+        android:id="@+id/nav_send"
+        android:name="com.example.misapps.ui.acercade.AcercadeFragment"
+        android:label="@string/acercaDe"
+        tools:layout="@layout/fragment_acerca" />
+
+</navigation>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context=".ui.Sensores.SensoresFragment">
+
+    <TextView
+        android:id="@+id/labelAcelerometro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Acelerómetro"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:id="@+id/linearacelerometro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelAcelerometro"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/tvAcelerometroX"
+            android:layout_width="0dp"
+            android:textAlignment="center"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvAcelerometroY"
+            android:layout_width="0dp"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvAcelerometroZ"
+            android:layout_width="0dp"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/labelOrientacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearacelerometro"
+        android:text="Orientación"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:id="@+id/linearorientacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelOrientacion"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/tvOrientacionX"
+            android:layout_width="0dp"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvOrientacionY"
+            android:layout_width="0dp"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvOrientacionZ"
+            android:layout_width="0dp"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/labelCampoMagnetico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearorientacion"
+        android:text="Campo magnético"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:id="@+id/linearCampoMagnetico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelCampoMagnetico"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/tvCampoMagneticoX"
+            android:layout_width="0dp"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvCampoMagneticoY"
+            android:layout_width="0dp"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvCampoMagneticoZ"
+            android:layout_width="0dp"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/labelTemperatura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearCampoMagnetico"
+        android:text="Temperatura"
+        android:textAlignment="center" />
+
+    <TextView
+    android:id="@+id/tvTemperatura"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/labelTemperatura"
+    android:layout_marginBottom="10dp"
+    android:textAlignment="center"
+    android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/labelProximidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTemperatura"
+        android:text="Proximidad"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/tvProximidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelProximidad"
+        android:layout_marginBottom="10dp"
+        android:textAlignment="center"
+        android:textSize="18dp" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recylerSensores"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@id/tvProximidad"
+        android:layout_marginBottom="10dp"/>
+
+    <Switch
+        android:id="@+id/switchLinterna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recylerSensores"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="20dp"
+        android:text="Linterna" />
+
+</RelativeLayout>
+
