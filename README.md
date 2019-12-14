@@ -3,6 +3,7 @@ Aplicación de android
 Una aplicación multipropósito con diversas herramientas que enseñan el manejo de distintos elementos de el desarrollo Android:
 
 - La presentación de contenido en Recycler View
+- Transacciones y manejo de Fragments
 - El consumo de contenido de internet a través de tareas asíncronas
 - Petición de diversos permisos al usuario
 - CRUD en base de datos
