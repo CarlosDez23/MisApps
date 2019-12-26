@@ -12,4 +12,5 @@
     <string name="miNombre" translatable="false">Carlos González Díez</string>
     <string name="contenidoInicio">Bienvenido a misApps</string>
     <string name="juegos">Mis Juegos</string>
+    <string name="title_activity_maps" translatable="false">Map</string>
 </resources>

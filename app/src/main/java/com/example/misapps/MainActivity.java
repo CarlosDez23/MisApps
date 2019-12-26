@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                     });
                         } else {
-                            Toast.makeText(this, "Debes aceptar los permisos", Toast.LENGTH_LONG).show();
+                            Toast.makeText(this, "Todos los permisos concedidos", Toast.LENGTH_LONG).show();
 
                         }
                     }

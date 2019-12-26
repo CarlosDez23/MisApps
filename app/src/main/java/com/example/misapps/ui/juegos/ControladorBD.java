@@ -1,13 +1,12 @@
 package com.example.misapps.ui.juegos;
 
-import android.content.ContentValues;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import androidx.annotation.Nullable;
 
-import com.example.misapps.R;
+
 
 public class ControladorBD extends SQLiteOpenHelper {
 

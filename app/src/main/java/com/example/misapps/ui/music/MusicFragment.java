@@ -222,6 +222,4 @@ public class MusicFragment extends Fragment {
             }));
         }
     }
-
-
 }

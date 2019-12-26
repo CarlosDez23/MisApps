@@ -292,6 +292,6 @@ public class JuegosFragment extends Fragment {
             bd.close();
             bdJuegos.close();
         }
-        //Log.i("OBJETO",juegos.get(0).toString());
+
     }
 }
