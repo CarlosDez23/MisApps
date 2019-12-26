@@ -1,6 +1,6 @@
 package com.example.misapps.ui.mapas;
 
-import androidx.lifecycle.ViewModelProviders;
+
 
 import android.os.Bundle;
 
@@ -16,7 +16,7 @@ import com.example.misapps.R;
 
 public class ContenedorMapa extends Fragment {
 
-    private ContenedorMapaViewModel mViewModel;
+
 
     public static ContenedorMapa newInstance() {
         return new ContenedorMapa();
@@ -31,8 +31,7 @@ public class ContenedorMapa extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ContenedorMapaViewModel.class);
-        // TODO: Use the ViewModel
+
     }
 
 }
