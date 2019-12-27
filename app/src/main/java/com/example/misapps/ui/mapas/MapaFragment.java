@@ -1,6 +1,7 @@
 package com.example.misapps.ui.mapas;
 
 
+import android.icu.text.Transliterator;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
 
 public class MapaFragment extends Fragment implements OnMapReadyCallback,
         GoogleMap.OnMarkerClickListener {
@@ -34,8 +39,14 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback,
     private SupportMapFragment supportMapFragment;
     private GoogleMap map;
 
-    public MapaFragment() {
-    }
+    //Lista para gestionar el histórico de posiciones en una ruta
+    private ArrayList<Location> listaRuta = new ArrayList<>();
+
+
+    //Elementos de la interfaz
+    private FloatingActionButton fabEmpezarRuta;
+
+
 
     public static MapaFragment newInstance() {
         return new MapaFragment();
@@ -51,8 +62,41 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback,
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         iniciarMapa();
+        llamarVistas();
 
     }
+
+    private void llamarVistas(){
+        this.fabEmpezarRuta = getView().findViewById(R.id.fabEmpezarRuta);
+        this.fabEmpezarRuta.setOnClickListener(listenerOnClick);
+
+
+
+    }
+
+    private View.OnClickListener listenerOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.fabEmpezarRuta:
+                    Snackbar.make(getView(),"Ruta empezada", Snackbar.LENGTH_LONG).show();
+                    iniciarRuta();
+                    break;
+                default:
+                    break;
+
+            }
+
+        }
+    };
+
+    private void iniciarRuta(){
+        listaRuta.clear();
+    }
+
+    /**
+     * PARTE DE GESTIÓN DEL MAPA Y SUS EVENTOS
+     */
 
     private void iniciarMapa(){
         posicion = LocationServices.getFusedLocationProviderClient(getActivity());
@@ -80,6 +124,7 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback,
         uiSettings.setTiltGesturesEnabled(true);
         uiSettings.setZoomControlsEnabled(true);
         uiSettings.setMapToolbarEnabled(true);
+        uiSettings.setCompassEnabled(false);
 
         //Zoom
         //map.setMinZoomPreference(12.0f);
