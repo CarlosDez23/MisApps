@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.inicioFragment,
                 R.id.nav_home, R.id.nav_juegos,R.id.nav_carousel, R.id.nav_music, R.id.nav_videos,
-                R.id.nav_sensores,R.id.nav_share, R.id.nav_send)
+                R.id.nav_sensores, R.id.nav_mapas, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -141,7 +141,8 @@ public class MainActivity extends AppCompatActivity {
                         com.example.misapps.Manifest.permission.WAKE_LOCK,
                         com.example.misapps.Manifest.permission.MEDIA_CONTENT_CONTROL,
                         com.example.misapps.Manifest.permission.READ_PHONE_STATE,
-                        Manifest.permission.CAMERA                        )
+                        Manifest.permission.CAMERA,
+                        android.Manifest.permission.ACCESS_FINE_LOCATION)
 
                 .withListener(new MultiplePermissionsListener() {
                     @Override

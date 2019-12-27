@@ -50,6 +50,12 @@
         tools:layout="@layout/sensores_fragment"/>
 
     <fragment
+        android:id="@+id/nav_mapas"
+        android:name="com.example.misapps.ui.mapas.MapaFragment"
+        android:label="Mis Mapas"
+        tools:layout="@layout/mapa_fragment" />
+
+    <fragment
         android:id="@+id/nav_share"
         android:name="com.example.misapps.ui.contacto.FragmentContacto"
         android:label="@string/contacto"
@@ -60,5 +66,7 @@
         android:name="com.example.misapps.ui.acercade.AcercadeFragment"
         android:label="@string/acercaDe"
         tools:layout="@layout/fragment_acerca" />
+
+
 
 </navigation>

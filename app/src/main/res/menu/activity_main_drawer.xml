@@ -36,6 +36,11 @@
             android:id="@id/nav_sensores"
             android:icon="@drawable/ic_sensores"
             android:title="Sensores"/>
+
+        <item
+            android:id="@id/nav_mapas"
+            android:icon="@drawable/ic_mismapas"
+            android:title="Mapas"/>
     </group>
 
     <item android:title="@string/menuSocial">

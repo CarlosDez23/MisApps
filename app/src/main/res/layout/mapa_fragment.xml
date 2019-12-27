@@ -5,9 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.mapas.MapaFragment">
 
-    <LinearLayout
-        android:id="@+id/contenedorMapa"
+    <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        android:id="@+id/contenedorMapa"
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
 </FrameLayout>
