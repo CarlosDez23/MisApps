@@ -142,7 +142,8 @@ public class MainActivity extends AppCompatActivity {
                         com.example.misapps.Manifest.permission.MEDIA_CONTENT_CONTROL,
                         com.example.misapps.Manifest.permission.READ_PHONE_STATE,
                         Manifest.permission.CAMERA,
-                        android.Manifest.permission.ACCESS_FINE_LOCATION)
+                        android.Manifest.permission.ACCESS_FINE_LOCATION,
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION)
 
                 .withListener(new MultiplePermissionsListener() {
                     @Override
