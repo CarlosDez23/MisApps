@@ -6,22 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".ui.mapas.MapaFragment">
 
-    <fragment
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/contenedorMapa"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabEmpezarRuta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_marginStart="18dp"
+            android:layout_marginBottom="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_startroute" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/misRutas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_marginStart="18dp"
+            android:layout_marginBottom="100dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@android:drawable/ic_menu_directions"
+            app:backgroundTint="@color/design_default_color_primary" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/listaRutasGuardadas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/contenedorMapa"
-        android:name="com.google.android.gms.maps.SupportMapFragment"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabEmpezarRuta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:layout_marginStart="18dp"
-        android:layout_marginBottom="30dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/ic_startroute" />
+        android:layout_gravity="bottom"
+        />
 
 
 </FrameLayout>
