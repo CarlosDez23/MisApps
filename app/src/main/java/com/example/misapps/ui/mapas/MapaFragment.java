@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.location.Location;
+import android.widget.TextView;
 
 import com.example.misapps.R;
 import com.example.misapps.ui.mapas.util.GpxParser;
@@ -66,6 +67,8 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback,
     //Elementos de la interfaz
     private FloatingActionButton fabEmpezarRuta;
     private FloatingActionButton fabMisRutas;
+    private TextView tvTiempoRuta;
+    private TextView tvDistanciaTotal;
 
 
     //Gestión de algunos aspectos de la ruta
@@ -76,12 +79,20 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback,
     private Marker marcadorInicio;
     private Marker marcadorFinal;
 
+    //Para el tiempo  ruta que vamos a mostrar
+    private int minutos = 0;
+    private int segundos = 0;
+    private int horas = 0;
+
+    //Distancia total recorrida en una ruta
+    private float distanciaTotal = 0.0f;
+
 
     public static MapaFragment newInstance() {
         return new MapaFragment();
     }
 
-    public MapaFragment getMapa(){
+    public MapaFragment getMapa() {
         return this;
     }
 
@@ -108,7 +119,8 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback,
         this.fabEmpezarRuta.setOnClickListener(listenerOnClick);
         this.fabMisRutas = getView().findViewById(R.id.misRutas);
         this.fabMisRutas.setOnClickListener(listenerOnClick);
-
+        this.tvTiempoRuta = getView().findViewById(R.id.tvTiempoRuta);
+        this.tvDistanciaTotal = getView().findViewById(R.id.tvTotalDistancia);
     }
 
     private View.OnClickListener listenerOnClick = new View.OnClickListener() {
@@ -129,8 +141,8 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback,
                     break;
                 case R.id.misRutas:
                     FragmentListaRutas listaRutas = new FragmentListaRutas(getMapa());
-                    getFragmentManager().beginTransaction().add(R.id.listaRutasGuardadas,listaRutas).addToBackStack(null).commit();
-
+                    getFragmentManager().beginTransaction().add(R.id.listaRutasGuardadas, listaRutas)
+                            .addToBackStack(null).commit();
                     break;
                 default:
                     break;
@@ -204,6 +216,7 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback,
                             situarCamara();
                             //Añadimos la posición actual a la lista de posiciones que conforman la ruta
                             listaPosiciones.add(posicionActual);
+
                         } else {
                             Snackbar.make(getView(), "No se puede establecer la posición actual",
                                     Snackbar.LENGTH_LONG).show();
@@ -220,6 +233,8 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback,
             Log.e("Exception: %s", e.getMessage());
         }
     }
+
+
 
     /**
      * Para situar la cámara en concordancia con la posición actual
@@ -267,6 +282,7 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback,
      */
     private void ajustesIniciales() {
         listaPosiciones.clear();
+        map.clear();
         rutaIniciada = true;
         //Quitamos los marcadores que puede haber de rutas anteriores
         if (marcadorInicio != null && marcadorFinal != null) {
@@ -278,6 +294,7 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback,
 
     private void iniciarRuta() {
         addMarcadorInicio(posicionActual);
+        iniciarContadorTiempo();
         final Handler handler = new Handler();
         Timer timer = new Timer();
         TimerTask asincrona = new TimerTask() {
@@ -305,6 +322,9 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback,
                                 }
                                 lineaRecorrido = map.addPolyline(opciones);
 
+                                //Igualmente actualizamos la distancia total recorrida
+                                gestionarDistanciaTotal();
+
                             } catch (Exception e) {
                                 Log.e("TIMER", "Error: " + e.getMessage());
                             }
@@ -324,9 +344,124 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback,
         guardarRuta();
     }
 
-    private void guardarRuta(){
+    private void guardarRuta() {
         GpxParser.escribirXML(listaPosiciones, getContext());
-        Snackbar.make(getView(),"Ruta guardada",Snackbar.LENGTH_LONG).show();
+        Snackbar.make(getView(), "Ruta guardada", Snackbar.LENGTH_LONG).show();
     }
 
+    private void iniciarContadorTiempo() {
+        final Handler handler = new Handler();
+        Timer timer = new Timer();
+        TimerTask tarea = new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Para mostrar al usuario el tiempo total de su ruta
+                        cronometroTick();
+                    }
+                });
+            }
+        };
+        timer.schedule(tarea, 0, 1000);
+    }
+
+    /**
+     * Con este método voy gestionando el funcionamiento del cronometro con el total
+     * del tiempo que se le muestra al usuario
+     */
+    private void cronometroTick(){
+        StringBuffer sb = new StringBuffer("");
+        if (rutaIniciada) {
+            if (segundos == 59) {
+                if (minutos == 59) {
+                    horas++;
+                    minutos = 0;
+                } else {
+                    minutos++;
+                }
+                segundos = 0;
+            } else {
+                segundos++;
+            }
+        } else {
+            segundos = 0;
+            minutos = 0;
+            horas = 0;
+        }
+
+        sb.append(gestionarViualizacion(horas));
+        sb.append(":");
+        sb.append(gestionarViualizacion(minutos));
+        sb.append(":");
+        sb.append(gestionarViualizacion(segundos));
+        tvTiempoRuta.setText(sb.toString());
+    }
+
+    /**
+     * Metodillo para gestionar como se va a visualizar nuestro "cronómetro"
+     * @param valor
+     * @return
+     */
+    private String gestionarViualizacion(int valor) {
+        String res;
+        if (valor == 0) {
+            res = "00";
+        } else if (valor < 10) {
+            res = "0" + valor;
+        } else {
+            res = String.valueOf(valor);
+        }
+        return res;
+    }
+
+    /**
+     * Método para mostrar al usuario la distancia total que va recorriendo. Para ello, vamos calcu-
+     * lando continuamente la distancia entre el último punto de localización guardado y el anterior
+     * al mismos, acumulándolo en la variable distanciaTotal, cuyo valor pasamos a pintar en el
+     * TextView
+     */
+    private void gestionarDistanciaTotal() {
+        //Llamamos al método para ir calculando el total de distancia recorrida
+        if (listaPosiciones.size() < 2) {
+            calcularDistancia(0.0f, 0.0f, (float) listaPosiciones
+                            .get(listaPosiciones.size() - 1).latitude,
+                    (float) listaPosiciones.get(listaPosiciones.size() - 1).longitude);
+        } else {
+            calcularDistancia((float) listaPosiciones
+                            .get(listaPosiciones.size() - 2).latitude,
+                    (float) listaPosiciones.get(listaPosiciones.size() - 2).longitude, (float) listaPosiciones
+                            .get(listaPosiciones.size() - 1).latitude,
+                    (float) listaPosiciones.get(listaPosiciones.size() - 1).longitude);
+        }
+
+        //Lo añadimos al campo de texto que muestra el dato de la distancia
+        tvDistanciaTotal.setText(distanciaTotal+" m");
+    }
+
+    /**
+     * Método para ir calculando la distancia total recorrida. Siemplemente busqué en internet
+     * how to get the distance between two latlng. Adjunto el enlace
+     * https://stackoverflow.com/questions/8832071/how-can-i-get-the-distance-between-two-point-by-latlng
+     *
+     * @param lat_a
+     * @param lng_a
+     * @param lat_b
+     * @param lng_b
+     * @return
+     */
+    private void calcularDistancia(float lat_a, float lng_a, float lat_b, float lng_b) {
+        double earthRadius = 3958.75;
+        double latDiff = Math.toRadians(lat_b - lat_a);
+        double lngDiff = Math.toRadians(lng_b - lng_a);
+        double a = Math.sin(latDiff / 2) * Math.sin(latDiff / 2) +
+                Math.cos(Math.toRadians(lat_a)) * Math.cos(Math.toRadians(lat_b)) *
+                        Math.sin(lngDiff / 2) * Math.sin(lngDiff / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = earthRadius * c;
+
+        int meterConversion = 1609;
+        distanciaTotal = distanciaTotal + new Float(distance * meterConversion).floatValue();
+    }
 }

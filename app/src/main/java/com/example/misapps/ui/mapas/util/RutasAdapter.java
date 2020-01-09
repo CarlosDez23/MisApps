@@ -52,7 +52,6 @@ public class RutasAdapter extends RecyclerView.Adapter<RutasAdapter.ViewHolder> 
                 File fichero = new File(Environment.getExternalStorageDirectory()+"/misApps/gpx/"+ruta);
                 ArrayList<LatLng> listRutas = GpxParser.leerFicheroXML(fichero);
                 pintarRutaGuardada(listRutas);
-
             }
         });
     }
@@ -63,14 +62,16 @@ public class RutasAdapter extends RecyclerView.Adapter<RutasAdapter.ViewHolder> 
     }
 
     private void pintarRutaGuardada(ArrayList<LatLng>listaRuta){
-        this.mapa.addMarcadorInicio(listaRuta.get(0));
-        this.mapa.addMarcadorFinal(listaRuta.get(listaRuta.size()-1));
         PolylineOptions opciones = new PolylineOptions();
         opciones.color(Color.RED);
         opciones.width(3);
         for(int i=0;i<listaRuta.size();i++){
             opciones.add(listaRuta.get(i));
         }
+        //Limpiamos el mapa y pintamos la ruta guardada
+        this.mapa.getMap().clear();
+        this.mapa.addMarcadorInicio(listaRuta.get(0));
+        this.mapa.addMarcadorFinal(listaRuta.get(listaRuta.size()-1));
         Polyline linea = this.mapa.getMap().addPolyline(opciones);
 
     }

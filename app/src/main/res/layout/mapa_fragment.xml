@@ -10,11 +10,43 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvTiempoRuta"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/colorPrimary"
+                android:text="00:00:00"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:id="@+id/tvTotalDistancia"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_marginTop="60dp"
+                android:text="0 m"
+                android:textColor="@color/colorPrimary"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
         <fragment
             android:id="@+id/contenedorMapa"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="570dp"
+            android:layout_gravity="bottom"
+            />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabEmpezarRuta"
@@ -38,6 +70,8 @@
             android:focusable="true"
             android:src="@android:drawable/ic_menu_directions"
             app:backgroundTint="@color/design_default_color_primary" />
+
+
     </FrameLayout>
 
     <FrameLayout

@@ -23,7 +23,7 @@ import javax.xml.transform.stream.StreamResult;
 
 public class GpxParser {
 
-    private static  String ruta = "/misApps/gpx";
+    private static String ruta = "/misApps/gpx";
 
     /**
      * Método para escribir un XML en la memoria externa
