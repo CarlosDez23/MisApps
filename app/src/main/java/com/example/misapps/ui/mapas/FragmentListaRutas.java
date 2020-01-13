@@ -56,6 +56,11 @@ public class FragmentListaRutas extends Fragment {
 
     }
 
+    /**
+     * Método que construye una lista con todos los ficheros que hay dentro de la carpeta
+     * en la que nosotros hemos elegido guardar los archivos gpx. Esta lista será la que se le pasa
+     * al adaptador para que monte el RecyclerView
+     */
     private void cargarLista(){
         String ruta = Environment.getExternalStorageDirectory().toString()+"/misApps/gpx";
         System.out.println(ruta);
